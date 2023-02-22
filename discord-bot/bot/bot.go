@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	Id string
-	// session *discordgo.Session
+	Id     string
+	events []event
 )
 
 func Start() {
@@ -31,6 +31,8 @@ func Start() {
 	Id = user.ID
 
 	session.AddHandler(messageHandler)
+	session.AddHandler(reactAddHandler)
+	session.AddHandler(reactRemoveHandler)
 
 	fmt.Println("Opening connection")
 	err = session.Open()
@@ -41,15 +43,4 @@ func Start() {
 	}
 
 	fmt.Println("Bot running")
-}
-
-func messageHandler(sesh *discordgo.Session, message *discordgo.MessageCreate) {
-	if message.Author.ID == Id {
-		return
-	}
-
-	if message.Content == "!test" {
-		fmt.Println("Sending message")
-		_, _ = sesh.ChannelMessageSend(message.ChannelID, "This is a test!")
-	}
 }
