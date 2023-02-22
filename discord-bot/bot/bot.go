@@ -9,7 +9,7 @@ import (
 
 var (
 	Id     string
-	events []event
+	events map[string]event
 )
 
 func Start() {
@@ -29,6 +29,7 @@ func Start() {
 	}
 
 	Id = user.ID
+	events = make(map[string]event)
 
 	session.AddHandler(messageHandler)
 	session.AddHandler(reactAddHandler)
@@ -42,5 +43,5 @@ func Start() {
 		return
 	}
 
-	fmt.Println("Bot running")
+	fmt.Println("Bot listening...")
 }

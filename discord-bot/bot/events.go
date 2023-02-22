@@ -6,4 +6,5 @@ type event struct {
 	title           string
 	minParticipants int
 	active          bool
+	participants    map[string]string
 }
