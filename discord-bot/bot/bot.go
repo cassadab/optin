@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	Id      string
-	session *discordgo.Session
+	Id string
+	// session *discordgo.Session
 )
 
 func Start() {
